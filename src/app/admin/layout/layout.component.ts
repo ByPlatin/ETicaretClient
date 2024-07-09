@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-declare var alertify: any;
 
 @Component({
   selector: 'app-layout',
@@ -9,7 +8,5 @@ declare var alertify: any;
 export class LayoutComponent {
   constructor() {}
 
-  ngOnInit(): void {
-    alertify.success('Success message');
-  }
+  ngOnInit(): void {}
 }
