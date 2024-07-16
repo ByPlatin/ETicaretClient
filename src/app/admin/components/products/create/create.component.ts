@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../../../services/common/models/product.service';
 import { Create_Product } from '../../../../contracts/create_product';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -24,6 +24,8 @@ export class CreateComponent extends BaseComponent implements OnInit {
   }
   ngOnInit(): void {}
 
+  @Output() createdProduct: EventEmitter<Create_Product> = new EventEmitter();
+
   create(
     Name: HTMLInputElement,
     Stock: HTMLInputElement,
@@ -35,13 +37,24 @@ export class CreateComponent extends BaseComponent implements OnInit {
     create_product.stock = parseInt(Stock.value);
     create_product.price = parseFloat(Price.value);
 
-    this.productService.create(create_product, () => {
-      this.hideSpinner(spinnerType.SquareJellyBox);
-      this.alertify.message('Kayıt başarılı', {
-        messageType: MessageType.Success,
-        dismissOthers: true,
-        position: Position.TopRight,
-      });
-    });
+    this.productService.create(
+      create_product,
+      () => {
+        this.hideSpinner(spinnerType.SquareJellyBox);
+        this.alertify.message('Kayıt başarılı', {
+          messageType: MessageType.Success,
+          dismissOthers: true,
+          position: Position.TopRight,
+        });
+        this.createdProduct.emit(create_product);
+      },
+      (errorMes) => {
+        this.alertify.message(errorMes, {
+          messageType: MessageType.Error,
+          dismissOthers: true,
+          position: Position.TopRight,
+        });
+      }
+    );
   }
 }
