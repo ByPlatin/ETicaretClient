@@ -18,6 +18,8 @@ import {
   FileUploadDialogState,
 } from '../../../dialogs/file-upload-dialog/file-upload-dialog.component';
 import { DialogService } from '../dialog.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { spinnerType } from '../../../base/base.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -30,7 +32,8 @@ export class FileUploadComponent {
     private alertifyService: AlertifyService,
     private customToastrService: CustomToastrService,
     private dialog: MatDialog,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private spinner: NgxSpinnerService
   ) {}
   public files: NgxFileDropEntry[];
 
@@ -48,6 +51,7 @@ export class FileUploadComponent {
       componentType: FileUploadDialogComponent,
       data: FileUploadDialogState.Yes,
       afterClosed: () => {
+        this.spinner.show(spinnerType.BallAtom);
         this.httpClientService
           .post(
             {
@@ -61,6 +65,7 @@ export class FileUploadComponent {
           .subscribe(
             (data) => {
               const mess: string = 'Dosyalar başarıyla yüklendi.';
+              this.spinner.hide(spinnerType.BallAtom);
               if (this.options.isAdminPage) {
                 this.alertifyService.message(mess, {
                   dismissOthers: true,
