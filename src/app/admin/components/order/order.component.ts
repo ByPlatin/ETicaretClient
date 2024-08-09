@@ -12,6 +12,6 @@ export class OrderComponent extends BaseComponent implements OnInit {
     super(spinner);
   }
   ngOnInit(): void {
-    this.showSpinner(spinnerType.SquareJellyBox);
+ 
   }
 }

@@ -48,12 +48,14 @@ export class ListComponent extends BaseComponent implements OnInit {
         this.paginator ? this.paginator.pageIndex : 0,
         this.paginator ? this.paginator.pageSize : 5,
         () => this.hideSpinner(spinnerType.SquareJellyBox),
-        (errorMessage) =>
+        (errorMessage) => {
+          this.hideSpinner(spinnerType.SquareJellyBox);
           this.alertifyService.message('Veri getirilemedi !', {
             messageType: MessageType.Error,
             dismissOthers: true,
             position: Position.TopRight,
-          })
+          });
+        }
       );
     this.dataSource = new MatTableDataSource<List_Product>(
       allProducts.products
@@ -70,10 +72,9 @@ export class ListComponent extends BaseComponent implements OnInit {
     this.dialogService.openDialog({
       componentType: SelectProductImageDialogComponent,
       data: id,
-      options:{
-        width:"1280px",
-
-      }
+      options: {
+        width: '1280px',
+      },
     });
   }
 

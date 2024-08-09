@@ -3,34 +3,34 @@
     <form class="col-6" [formGroup]="frm" (ngSubmit)="onSubmit(frm.value)">
       <div>
         <div class="mb-3">
-          <label for="adSoyad" class="form-label">Ad Soyad</label>
+          <label for="nameSurname" class="form-label">Ad Soyad</label>
           <input
-            formControlName="adSoyad"
+            formControlName="nameSurname"
             type="text"
             class="form-control"
-            id="adSoyad"
+            id="nameSurname"
             placeholder="Ad Soyad"
-            [ngClass]="{ 'is-invalid': component['adSoyad'].errors }"
+            [ngClass]="{ 'is-invalid': component['nameSurname'].errors }"
           />
           <small
             class="invalid-feedback"
-            *ngIf="submitted && component.adSoyad.errors"
+            *ngIf="submitted && component.nameSurname.errors"
             >Lütfen 3 ile 50 karakter arası giriniz.</small
           >
         </div>
         <div class="mb-3">
-          <label for="kullaniciAdi" class="form-label">Kullanıcı Adı</label>
+          <label for="username" class="form-label">Kullanıcı Adı</label>
           <input
-            formControlName="kullaniciAdi"
+            formControlName="username"
             type="text"
             class="form-control"
-            id="kullaniciAdi"
+            id="username"
             placeholder="User123"
-            [ngClass]="{ 'is-invalid': component['kullaniciAdi'].errors }"
+            [ngClass]="{ 'is-invalid': component['username'].errors }"
           />
           <small
             class="invalid-feedback"
-            *ngIf="submitted && component.kullaniciAdi.errors"
+            *ngIf="submitted && component.username.errors"
             >Lütfen 3 ile 50 karakter arası giriniz.</small
           >
         </div>
@@ -53,24 +53,24 @@
         <div class="mb-3">
           <label for="inputPassword" class="form-label">Şifre</label>
           <input
-            formControlName="sifre"
+            formControlName="password"
             type="password"
             id="inputPassword"
             class="form-control"
-            [ngClass]="{ 'is-invalid': component['sifre'].errors }"
+            [ngClass]="{ 'is-invalid': component['password'].errors }"
           />
         </div>
         <div class="mb-3">
           <label for="inputPasswordT" class="form-label">Şifre Tekrar</label>
           <input
-            formControlName="sifreTekrar"
+            formControlName="passwordConfirm"
             type="password"
             id="inputPasswordT"
             class="form-control"
             [ngClass]="{
               'is-invalid':
-                component['sifreTekrar'].errors ||
-                component.sifre.value != component.sifreTekrar.value
+                component['passwordConfirm'].errors ||
+                component.password.value != component.passwordConfirm.value
             }"
           /><small
             class="invalid-feedback"
@@ -80,7 +80,7 @@
         </div>
         <div class="col-auto">
           <button type="submit" class="btn btn-primary mb-3">
-            Confirm identity
+            Kayıt Ol
           </button>
         </div>
       </div>
