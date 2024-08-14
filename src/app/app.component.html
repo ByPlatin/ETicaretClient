@@ -31,24 +31,47 @@
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="register"
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLink="register"
+              *ngIf="!authService.isAuthenticated"
               >Kayıt Ol</a
             >
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="login"
+            <a
+              class="nav-link active"
+              aria-current="page"
+              routerLink="login"
+              *ngIf="!authService.isAuthenticated"
               >Giriş Yap</a
             >
           </li>
+          <li class="nav-item">
+            <button
+              type="button"
+              class="btn btn-outline-danger"
+              aria-current="page"
+              (click)="signOut()"
+              *ngIf="authService.isAuthenticated"
+            >
+              Çıkış Yap
+            </button>
+          </li>
           <li>
-            <a routerLink="admin" class="btn btn-outline-success" type="submit"
+            <a
+              routerLink="admin"
+              class="btn btn-outline-success"
+              type="submit"
+              *ngIf="authService.isAuthenticated"
               >Yönetim Paneli</a
             >
           </li>
           <!-- <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/admin">Admin</a>
         </li> -->
-          <li class="nav-item dropdown">
+          <!-- <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"
               href="#"
@@ -76,8 +99,9 @@
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+          <button class="btn btn-outline-success" type="submit">Search</button> -->
+          <!-- </form> -->
+        </ul>
       </div>
     </div>
   </nav>
