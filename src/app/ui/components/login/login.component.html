@@ -23,13 +23,15 @@
           class="form-control"
         />
       </div>
+      <asl-google-signin-button></asl-google-signin-button>
+      <img style="width: 24px; color: aqua;" src="assets/facebook-brands-solid.svg" alt="" srcset="" (click)="facebookLogin()">
       <div class="col-auto">
         <button
           type="submit"
           (click)="login(txtUsernameOrEmail.value, txtPassword.value)"
           class="btn btn-primary mb-3"
         >
-          Kayıt Ol
+          Giriş Yap
         </button>
       </div>
     </div>
