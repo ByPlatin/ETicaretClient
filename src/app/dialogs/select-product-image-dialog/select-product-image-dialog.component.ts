@@ -69,6 +69,13 @@ export class SelectProductImageDialogComponent
       },
     });
   }
+
+  showCase(imageId: string) {
+    this.spinner.show(spinnerType.BallPulse);
+    this.productService.changeShowcaseImage(imageId, this.data as string, () => {
+      this.spinner.hide(spinnerType.BallPulse);
+    });
+  }
 }
 
 export enum SelectProductImageState {
